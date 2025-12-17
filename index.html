@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="Private notes generator for CTWS" />
+        <meta name="robots" content="noindex, nofollow" />
+        <link rel="icon" href="favicon.ico" />
+        <link rel="stylesheet" href="style.css" />
+        <title>CTWS T2 Private Notes</title>
+    </head>
+    <body>
+        <main>
+            <!-- Version 2 -->
+            <form id="form_version_2">
+                <ul id="ul__first-line">
+                    <li>
+                        <input
+                            type="text"
+                            id="input__sr-number"
+                            placeholder="SR#"
+                        />
+                    </li>
+                    <li>
+                        <select id="select__contact-method">
+                            <option value="PHONE">Phone</option>
+                            <option value="EMAIL">Email</option>
+                        </select>
+                    </li>
+                    <li>
+                        <select id="select__language">
+                            <option value="French">French</option>
+                            <option value="English">English</option>
+                        </select>
+                    </li>
+                    <li>
+                        <input
+                            type="text"
+                            id="input__issue"
+                            placeholder="Issue description"
+                        />
+                    </li>
+                </ul>
+                <ul id="ul__second-line">
+                    <li>
+                        <select id="select__warranty">
+                            <option value="oem">OEM warranty</option>
+                            <option value="costco">Costco's 2nd year</option>
+                            <option value="asurion">Excellence Plus</option>
+                            <option value="90 days">
+                                90 days return policy
+                            </option>
+                        </select>
+                    </li>
+                    <li>
+                        <select id="select__purchase-location">
+                            <option value="894">894</option>
+                            <option value="WH#">WH#</option>
+                        </select>
+                        <input
+                            type="number"
+                            id="input__wh-number"
+                            placeholder="Warehouse #"
+                        />
+                    </li>
+                    <li>
+                        <input
+                            type="text"
+                            id="input__repairs"
+                            placeholder="Repair status"
+                        />
+                    </li>
+                </ul>
+                <ul id="ul__third-line">
+                    <li>
+                        <textarea placeholder="Current SR status"></textarea>
+                    </li>
+                </ul>
+                <ul id="ul__fourth-line">
+                    <li>
+                        <textarea placeholder="Actions taken"></textarea>
+                    </li>
+                    <li>
+                        <textarea placeholder="New SR status"></textarea>
+                    </li>
+                </ul>
+                <ul id="ul__signature">
+                    <li>
+                        Signature:
+                        <input
+                            type="text"
+                            placeholder="[1st Name(s)][Last Name(s) Initials][Region/City]CTWS"
+                        />
+                    </li>
+                </ul>
+            </form>
+            <section id="section__result">
+                <button id="button__copy" type="button">Copy</button>
+                <button type="button" id="button__clear">Clear</button>
+            </section>
+        </main>
+        <script src="script.js"></script>
+    </body>
+</html>
