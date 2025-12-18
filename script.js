@@ -2,6 +2,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const result = document.querySelector("#section__result");
     const form = document.querySelector("form");
     const copyBtn = document.querySelector("#button__copy");
+    let allowReload = false;
+
+    function autoResizeTextarea(textarea) {
+        textarea.style.height = "auto";
+        textarea.style.height = textarea.scrollHeight + "px";
+    }
 
     // --- Signature Handling via localStorage ---
     const sigField = document.querySelector('input[placeholder*="CTWS"]');
@@ -28,24 +34,30 @@ document.addEventListener("DOMContentLoaded", () => {
         updateSummary();
     });
 
-    toggleWHInput(); // initial state
+    toggleWHInput();
+
+    form.querySelectorAll("textarea").forEach(textarea => {
+        autoResizeTextarea(textarea);
+        textarea.addEventListener("input", () => autoResizeTextarea(textarea));
+    });
 
     function buildSummary() {
         const uls = Array.from(form.querySelectorAll("ul"));
         const lines = [];
 
         uls.forEach((ul, ulIndex) => {
+            if (ul.id === "ul__scattered-notes") return;
             const values = [];
 
             ul.querySelectorAll("li").forEach(li => {
-                // Text inputs
+                // --- Text inputs ---
                 li.querySelectorAll("input[type='text']").forEach(input => {
                     if (input.value.trim()) {
                         values.push(input.value.trim());
                     }
                 });
 
-                // Selects
+                // --- Selects ---
                 li.querySelectorAll("select").forEach(select => {
                     if (!select.value) return;
 
@@ -63,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 });
 
-                // Textareas
+                // --- Textareas ---
                 li.querySelectorAll("textarea").forEach(textarea => {
                     if (textarea.value.trim()) {
                         const inline = textarea.value
@@ -78,12 +90,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (!values.length) return;
 
-            // Fourth UL → " / " separator
+            // --- Adding " / " separators ---
             const slashSeparated = [0, 1, 3].includes(ulIndex);
 
-const line = slashSeparated
-    ? values.join(" / ")
-    : values.join(" ");
+            const line = slashSeparated ? values.join(" / ") : values.join(" ");
+            if (ul.id === "ul__signature" && lines.length) {
+                lines.push(""); // blank line before signature
+            }
             lines.push(line);
         });
 
@@ -118,18 +131,18 @@ const line = slashSeparated
 
     // --- Clear button ---
     document.getElementById("button__clear").addEventListener("click", () => {
-        const confirmClear = confirm(
-            "Are you sure you want to clear all fields?"
-        );
-        if (confirmClear) location.reload();
+        if (confirm("Are you sure you want to clear all fields?")) {
+            allowReload = true;
+            location.reload();
+        }
     });
 
-    // --- Optional: Prevent unwanted reloads (commented for now) ---
+    // --- Prevent unwanted reloads ---
     function preventUnwantedReload() {
         window.addEventListener("beforeunload", e => {
+            if (allowReload) return;
             e.preventDefault();
             e.returnValue = "";
-            return "";
         });
     }
     preventUnwantedReload();
