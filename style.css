@@ -42,20 +42,84 @@ ul {
 
 @media (min-width: 796px) {
     ul {
+* {
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue",
+        Arial, sans-serif;
+    font-size: 16px;
+    list-style: none;
+    margin: 0;
+    outline: none;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+main {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 64px;
+}
+
+form {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    gap: 16px;
+}
+
+h2 {
+    margin-bottom: 16px;
+}
+
+ul {
+    width: calc((100% - 16px) / 2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+ul#ul__signature,
+ul#ul__scattered-notes {
+    width: 100%;
+}
+
+ul:nth-of-type(3):before,
+ul:nth-of-type(4):before {
+    width: 100%;
+    height: 1px;
+    background-color: gray;
+    content: "";
+    margin-bottom: 8px;
+}
+
+@media (min-width: 796px) {
+    ul {
         width: calc((100% - 128px) / 4);
+    }
+
+    ul#ul__scattered-notes {
+        width: 50%;
     }
 
     ul#ul__signature li {
         width: 40%;
     }
 
+    ul:nth-of-type(3):before,
+    ul:nth-of-type(4):before {
+        display: none;
+    }
+
     main section#section__result {
         width: 50vw;
     }
-}
-
-ul#ul__signature {
-    width: 100%;
 }
 
 li {
@@ -64,14 +128,6 @@ li {
     flex-flow: row wrap;
     align-items: center;
     gap: 8px;
-}
-
-li:not(:last-of-type):after {
-    width: 100%;
-    height: 1px;
-    background-color: gray;
-    content: "";
-    margin-top: 8px;
 }
 
 li textarea {
@@ -86,7 +142,7 @@ li textarea {
     background-color: lightgray;
     border: none;
     border-radius: 8px;
-    padding: 4px 8px;
+    padding: 8px 12px;
     display: block;
 }
 
@@ -94,15 +150,21 @@ li select {
     cursor: pointer;
 }
 
-/* select#select__purchase-location:has(option[value]) {
-  
-} */
+/* Remove number input arrows */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
 
 main section#section__result {
     min-height: 300px;
     background-color: #eeeeee;
-    font-family: Monospace;
-    border: 2px gray solid;
+    border: 1px gray solid;
     border-radius: 8px;
     padding: 16px;
     display: flex;
@@ -119,6 +181,7 @@ section#section__result pre {
 section#section__result button#button__copy {
     width: 100px;
     height: fit-content;
+    -webkit-tap-highlight-color: transparent;
     background-color: #6d8592;
     color: #d6e6eb;
     font-weight: bold;
@@ -130,9 +193,10 @@ section#section__result button#button__copy {
     cursor: pointer;
 }
 
-button#button__clear {
+section#section__result button#button__clear {
     width: 100px;
     height: fit-content;
+    -webkit-tap-highlight-color: transparent;
     background-color: #b21a25;
     color: #ffffff;
     font-weight: bold;
@@ -142,4 +206,12 @@ button#button__clear {
     justify-self: center;
     align-self: flex-end;
     cursor: pointer;
+}
+
+input:focus,
+button:focus,
+select:focus,
+textarea:focus {
+    box-shadow: 0px 0px 5px 1px rgba(109, 133, 146, 0.75);
+    transition: 0.3s ease;
 }
