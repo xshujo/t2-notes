@@ -85,6 +85,10 @@ li textarea:active {
     background-color: #7a7a7a;
 }
 
+#input__wh-number {
+  display: none;
+}
+
 li select {
     color: #000;
     appearance: none;
