@@ -25,8 +25,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function toggleWHInput() {
         const isWH = purchaseSelect.value === "WH#";
-        whInput.style.display = isWH ? "block" : "none";
-        if (!isWH) whInput.value = "";
+
+        whInput.classList.toggle("hidden", !isWH);
+
+        if (isWH) {
+            // Wait for layout to update, then focus
+            requestAnimationFrame(() => {
+                whInput.focus();
+                whInput.select(); // optional: selects existing value
+            });
+        } else {
+            whInput.value = "";
+        }
     }
 
     purchaseSelect.addEventListener("change", () => {
@@ -145,5 +155,6 @@ document.addEventListener("DOMContentLoaded", () => {
             e.returnValue = "";
         });
     }
-    preventUnwantedReload();
+    pr
+        eventUnwantedReload();
 });
