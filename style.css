@@ -62,6 +62,7 @@ li {
 
 li textarea {
     min-height: 100px;
+    transition: 0.3s ease;
 }
 
 li input[type="text"],
@@ -74,6 +75,13 @@ li textarea {
     border-radius: 8px;
     padding: 8px 12px;
     display: block;
+}
+
+li input[type="text"]:active,
+li input[type="number"]:active,
+li select:active,
+li textarea:active {
+    background-color: #7a7a7a;
 }
 
 li select {
@@ -90,6 +98,7 @@ li span {
     top: 8px;
     right: 8px;
     transform: scaleY(0.8);
+    user-select: none;
 }
 
 select:has(option:checked[value=""]),
@@ -118,6 +127,7 @@ main section#section__result {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
+    align-items: space-between;
     gap: 16px;
 }
 
@@ -156,12 +166,18 @@ section#section__result button#button__clear {
     cursor: pointer;
 }
 
+input,
+button,
+select,
+textarea {
+    transition: 0.3s ease;
+}
+
 input:focus,
 button:focus,
 select:focus,
 textarea:focus {
     box-shadow: 0px 0px 5px 1px rgba(109, 133, 146, 0.75);
-    transition: 0.3s ease;
 }
 
 div#modal__overlay {
