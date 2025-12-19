@@ -93,6 +93,10 @@ li select {
     cursor: pointer;
 }
 
+select option {
+    color: #000;
+}
+
 li span {
     font-size: 14px;
     position: absolute;
