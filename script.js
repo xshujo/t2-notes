@@ -23,21 +23,25 @@ document.addEventListener("DOMContentLoaded", () => {
     const purchaseSelect = document.getElementById("select__purchase-location");
     const whInput = document.getElementById("input__wh-number");
 
-    function toggleWHInput() {
-        const isWH = purchaseSelect.value === "WH#";
+    
+	function toggleWHInput() {
+	  const isWH = purchaseSelect.value === "WH#";
 
-        whInput.classList.toggle("hidden", !isWH);
+	  if (isWH) {
+		// Show and focus WH#
+		whInput.style.display = "block";
+		// Slight delay helps if the element was just unhidden
+		setTimeout(() => whInput.focus(), 0);
 
-        if (isWH) {
-            // Wait for layout to update, then focus
-            requestAnimationFrame(() => {
-                whInput.focus();
-                whInput.select(); // optional: selects existing value
-            });
-        } else {
-            whInput.value = "";
-        }
-    }
+		// (Optional) make it required only when relevant
+		whInput.required = true;
+	  } else {
+		// Hide and clear WH# when not needed
+		whInput.style.display = "none";
+		whInput.value = "";
+		whInput.required = false;
+	  }
+	}
 
     purchaseSelect.addEventListener("change", () => {
         toggleWHInput();
@@ -155,6 +159,7 @@ document.addEventListener("DOMContentLoaded", () => {
             e.returnValue = "";
         });
     }
+	
     pr
         eventUnwantedReload();
 });
