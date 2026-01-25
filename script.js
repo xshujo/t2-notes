@@ -155,6 +155,5 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    pr
-    eventUnwantedReload();
+    preventUnwantedReload();
 });
