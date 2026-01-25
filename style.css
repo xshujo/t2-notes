@@ -42,8 +42,12 @@ ul#ul__scattered-notes {
     width: 100%;
 }
 
-ul:nth-of-type(3):before,
-ul:nth-of-type(4):before {
+ul:nth-of-type(3),
+ul:nth-of-type(4) {
+    width: 100%;
+}
+
+ul:nth-of-type(3):before {
     width: 100%;
     height: 1px;
     background-color: gray;
@@ -86,7 +90,7 @@ li textarea:active {
 }
 
 #input__wh-number {
-  display: none;
+    display: none;
 }
 
 li select {
