@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let allowReload = false;
 
     function autoResizeTextarea(textarea) {
-        textarea.style.height = "auto";
+        textarea.style.height = "0px";
         textarea.style.height = textarea.scrollHeight + "px";
     }
 
@@ -23,25 +23,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const purchaseSelect = document.getElementById("select__purchase-location");
     const whInput = document.getElementById("input__wh-number");
 
-    
-	function toggleWHInput() {
-	  const isWH = purchaseSelect.value === "WH#";
 
-	  if (isWH) {
-		// Show and focus WH#
-		whInput.style.display = "block";
-		// Slight delay helps if the element was just unhidden
-		setTimeout(() => whInput.focus(), 0);
+    function toggleWHInput() {
+        const isWH = purchaseSelect.value === "WH#";
 
-		// (Optional) make it required only when relevant
-		whInput.required = true;
-	  } else {
-		// Hide and clear WH# when not needed
-		whInput.style.display = "none";
-		whInput.value = "";
-		whInput.required = false;
-	  }
-	}
+        if (isWH) {
+            whInput.style.display = "block";
+            setTimeout(() => whInput.focus(), 0);
+            whInput.required = true;
+        } else {
+            whInput.style.display = "none";
+            whInput.value = "";
+            whInput.required = false;
+        }
+    }
 
     purchaseSelect.addEventListener("change", () => {
         toggleWHInput();
@@ -109,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const line = slashSeparated ? values.join(" / ") : values.join(" ");
             if (ul.id === "ul__signature" && lines.length) {
-                lines.push(""); // blank line before signature
+                lines.push("");
             }
             lines.push(line);
         });
@@ -159,7 +154,7 @@ document.addEventListener("DOMContentLoaded", () => {
             e.returnValue = "";
         });
     }
-	
+
     pr
-        eventUnwantedReload();
+    eventUnwantedReload();
 });
