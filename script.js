@@ -99,17 +99,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (!values.length) return;
 
-            // --- Adding " / " separators ---
-            const slashSeparated = [0, 1, 3].includes(ulIndex);
-
-            const line = slashSeparated ? values.join(" / ") : values.join(" ");
-            if (ul.id === "ul__signature" && lines.length) {
-                lines.push("");
-            }
-            lines.push(line);
+            // --- All fields are inline and separated by " / " ---
+            values.forEach(value => lines.push(value));
         });
 
-        return lines.join("\n");
+        return lines.join(" / ");
     }
 
     function updateSummary() {
@@ -156,4 +150,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     preventUnwantedReload();
-});
+})
+    ;
